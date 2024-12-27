@@ -69,7 +69,7 @@
               </div>
               <h5 class="font-size-25 text-white mb-4">Only use for Admin</h5>
               <h5 class="font-size-16 text-white-50 mb-4">
-                A tradition of trust
+                PANEL ADMIN BANK NEGARA CHESKA
               </h5>
             </div>
           </div>
@@ -130,10 +130,7 @@
                           </div>
                           <div class="col-md-6">
                             <div class="text-md-right mt-3 mt-md-0">
-                              <a href="auth-recoverpw.html" class="text-muted"
-                                ><i class="mdi mdi-lock"></i> Forgot your
-                                password?</a
-                              >
+                              
                             </div>
                           </div>
                         </div>
@@ -147,10 +144,7 @@
                           </button>
                         </div>
                         <div class="mt-4 text-center">
-                          <a href="auth-register.php" class="text-muted"
-                            ><i class="mdi mdi-account-circle mr-1"></i> Create
-                            an account</a
-                          >
+                          
                         </div>
                       </div>
                     </div>

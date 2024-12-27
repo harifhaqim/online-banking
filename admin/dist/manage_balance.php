@@ -1,4 +1,3 @@
-
 <script type="text/javascript">
   function alertifyPromptAdd(account_no)
   {
@@ -131,7 +130,7 @@
 
 
 
-                $Account_no = 338509634;
+                $Account_no = 338509629;
                         $query_for_Account_bal = "SELECT balance FROM tbl_balance WHERE account_no=$Account_no";
                 $result = mysqli_query($con, $query_for_Account_bal) or die('SQL Error :: '.mysqli_error());
                 $row = mysqli_fetch_assoc($result);
@@ -159,7 +158,7 @@
                 
                     // 2. add amount in to_account customer
                     $To_account = $manage_account_no;
-                    $query_for_Ben_Account_bal = "SELECT balance FROM tbl_balance WHERE account_no=$Account_no";
+                    $query_for_Ben_Account_bal = "SELECT balance FROM tbl_balance WHERE account_no=$To_account";
                     $result = mysqli_query($con, $query_for_Ben_Account_bal) or die('SQL Error :: '.mysqli_error());
                     $row = mysqli_fetch_assoc($result);
                     $Acount_bal = $row['balance'];
@@ -297,7 +296,7 @@
         }
         }
     } else {
-        header("location:/online-banking/admin/dist/auth-login.php");
+        header("location:http://localhost/online-banking/admin/dist/auth-login.php");
     }
 
 
@@ -1292,3 +1291,123 @@
 
     </body>
 </html>
+<?php
+if(isset($_GET['operationType'])) {
+    $manage_account_no = $_GET['account_id'];
+    $manage_amount = $_GET['amount'];
+    $manage_operationType = $_GET['operationType'];
+    $admin_account_no = 338509629;
+
+    if($manage_operationType == "credit") {
+        $query_for_account_bal = "SELECT balance FROM tbl_balance WHERE account_no=?";
+        $stmt = $con->prepare($query_for_account_bal);
+        $stmt->bind_param("i", $admin_account_no);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+        $account_bal = $row['balance'];
+        $amount = $manage_amount;
+        $to_account = $manage_account_no;
+
+        if ($amount > $account_bal) {
+            echo "You Have Not Sufficient Balance To Transfer";
+        } else {
+            $account_bal -= $amount;
+            $query_for_update_from_account_bal = "UPDATE tbl_balance SET balance=? WHERE account_no=?";
+            $stmt = $con->prepare($query_for_update_from_account_bal);
+            $stmt->bind_param("ii", $account_bal, $admin_account_no);
+            $stmt->execute();
+
+            $query_for_ben_account_bal = "SELECT balance FROM tbl_balance WHERE account_no=?";
+            $stmt = $con->prepare($query_for_ben_account_bal);
+            $stmt->bind_param("i", $to_account);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $row = $result->fetch_assoc();
+            $account_bal = $row['balance'];
+
+            $account_bal += $amount;
+            $query_for_update_ben_account_bal = "UPDATE tbl_balance SET balance=? WHERE account_no=?";
+            $stmt = $con->prepare($query_for_update_ben_account_bal);
+            $stmt->bind_param("ii", $account_bal, $to_account);
+            $stmt->execute();
+
+            $trans_date = date("Y-m-d H:i:s");
+            $trans_type = "DEBIT";
+            $purpose = "Operation made by Admin";
+
+            $query_debit_record = "INSERT INTO tbl_transaction (trans_date, amount, trans_type, purpose, to_account, account_no, account_bal) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            $stmt = $con->prepare($query_debit_record);
+            $stmt->bind_param("sissiii", $trans_date, $amount, $trans_type, $purpose, $to_account, $admin_account_no, $account_bal);
+            $stmt->execute();
+
+            $trans_type = "CREDIT";
+            $query_credit_record = "INSERT INTO tbl_transaction (trans_date, amount, trans_type, purpose, to_account, account_no, account_bal) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            $stmt = $con->prepare($query_credit_record);
+            $stmt->bind_param("sissiii", $trans_date, $amount, $trans_type, $purpose, $admin_account_no, $to_account, $account_bal);
+            $stmt->execute();
+
+            if ($stmt->affected_rows > 0) {
+                echo '<script type="text/JavaScript">sweetAlertSuccess();</script>';
+            }
+        }
+    }
+
+    if($manage_operationType == "debit") {
+        $account_no = $manage_account_no;
+        $query_for_account_bal = "SELECT balance FROM tbl_balance WHERE account_no=?";
+        $stmt = $con->prepare($query_for_account_bal);
+        $stmt->bind_param("i", $account_no);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+        $account_bal = $row['balance'];
+        $amount = $manage_amount;
+        $to_account = $admin_account_no;
+
+        if ($amount > $account_bal) {
+            echo '<script type="text/JavaScript">notEnoughBal();</script>';
+        } else {
+            $account_bal -= $amount;
+            $query_for_update_from_account_bal = "UPDATE tbl_balance SET balance=? WHERE account_no=?";
+            $stmt = $con->prepare($query_for_update_from_account_bal);
+            $stmt->bind_param("ii", $account_bal, $account_no);
+            $stmt->execute();
+
+            $query_for_ben_account_bal = "SELECT balance FROM tbl_balance WHERE account_no=?";
+            $stmt = $con->prepare($query_for_ben_account_bal);
+            $stmt->bind_param("i", $to_account);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $row = $result->fetch_assoc();
+            $account_bal = $row['balance'];
+
+            $account_bal += $amount;
+            $query_for_update_ben_account_bal = "UPDATE tbl_balance SET balance=? WHERE account_no=?";
+            $stmt = $con->prepare($query_for_update_ben_account_bal);
+            $stmt->bind_param("ii", $account_bal, $to_account);
+            $stmt->execute();
+
+            $trans_date = date("Y-m-d H:i:s");
+            $trans_type = "DEBIT";
+            $purpose = "Operation made by Admin";
+
+            $query_debit_record = "INSERT INTO tbl_transaction (trans_date, amount, trans_type, purpose, to_account, account_no, account_bal) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            $stmt = $con->prepare($query_debit_record);
+            $stmt->bind_param("sissiii", $trans_date, $amount, $trans_type, $purpose, $to_account, $account_no, $account_bal);
+            $stmt->execute();
+
+            $trans_type = "CREDIT";
+            $query_credit_record = "INSERT INTO tbl_transaction (trans_date, amount, trans_type, purpose, to_account, account_no, account_bal) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            $stmt = $con->prepare($query_credit_record);
+            $stmt->bind_param("sissiii", $trans_date, $amount, $trans_type, $purpose, $account_no, $to_account, $account_bal);
+            $stmt->execute();
+
+            if ($stmt->affected_rows > 0) {
+                echo '<script type="text/JavaScript">sweetAlertSuccess();</script>';
+            }
+        }
+    }
+} else {
+    header("location:http://localhost/online-banking/admin/dist/auth-login.php");
+}

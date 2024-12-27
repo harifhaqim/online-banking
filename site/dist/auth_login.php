@@ -140,10 +140,7 @@ include('connect.php');
                           </div>
                           <div class="col-md-6">
                             <div class="text-md-right mt-3 mt-md-0">
-                              <a href="auth-recoverpw.html" class="text-muted"
-                                ><i class="mdi mdi-lock"></i> Forgot your
-                                password?</a
-                              >
+                              
                             </div>
                           </div>
                         </div>
@@ -157,10 +154,7 @@ include('connect.php');
                           </button>
                         </div>
                         <div class="mt-4 text-center">
-                          <a href="auth_register.php" class="text-muted"
-                            ><i class="mdi mdi-account-circle mr-1"></i> Create
-                            an account</a
-                          >
+                          
                         </div>
                       </div>
                     </div>
