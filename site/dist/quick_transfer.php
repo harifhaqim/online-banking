@@ -2,7 +2,7 @@
 
 function checkPurpose(val){
     var element=document.getElementById('txt_purpose_hide');
-    if(val=='Select'||val=='Others')
+    if(val=='Select'||val=='Lain-lain sebab')
         element.style.display='block';
     else  
         element.style.display='none';
@@ -1151,7 +1151,7 @@ function checkPurpose(val){
             $Amount = $_REQUEST['txt_amount'];
             $Trans_type = "DEBIT";
             $Purpose = $_REQUEST['txt_purpose'];
-            if($Purpose == "" || $Purpose == "Others" ){
+            if($Purpose == "" || $Purpose == "Lain-lain sebab" ){
                 $Purpose = $_REQUEST['txt_purpose_others'];
             }
             else {
