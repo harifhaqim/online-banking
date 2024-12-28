@@ -345,7 +345,7 @@
                             <li>
                                 <a href="manage_balance.php" class="waves-effect">
                                     <i class="mdi mdi-bank-transfer"></i>
-                                    <span>Manage Balance</span>
+                                    
                                 </a>
                             </li>
 

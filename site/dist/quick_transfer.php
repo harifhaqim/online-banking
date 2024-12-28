@@ -56,7 +56,7 @@ function checkPurpose(val){
   {
     Swal.fire({
       title: "Transaction Failed",
-      text: "Limit of Quick Transfer is 500 to 20,000",
+      text: "Limit of Quick Transfer is $1",
       icon: "error"
     });
   }
@@ -1115,7 +1115,7 @@ function checkPurpose(val){
               ;
         }
 
-        elseif ($Amount < 500 || $Amount > 20000)
+        elseif ($Amount < 1 || $Amount > 100000000000000)
         {
             echo '<script type="text/JavaScript">  
               transferLimit();

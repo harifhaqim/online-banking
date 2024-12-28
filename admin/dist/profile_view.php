@@ -58,7 +58,7 @@
 
         
     } else {
-        header("location:/online-banking/admin/dist/auth-login.php");
+        header("location:http://localhost/online-banking/admin/dist/auth-login.php");
     }
 ?>
 <!doctype html>
@@ -193,11 +193,17 @@
                         </div>
 
                         <div class="dropdown d-inline-block">
-                            
+                            <button type="button" class="btn header-item noti-icon right-bar-toggle waves-effect">
+                                <i class="mdi mdi-tune"></i>
+                            </button>
                         </div>
 
                         <div class="dropdown d-inline-block">
-                            
+                            <button type="button" class="btn header-item noti-icon waves-effect" id="page-header-notifications-dropdown"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="mdi mdi-bell-outline"></i>
+                                <span class="badge badge-danger badge-pill">3</span>
+                            </button>
                             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right p-0"
                                 aria-labelledby="page-header-notifications-dropdown">
                                 <div class="p-3">
@@ -290,7 +296,10 @@
                             </button>
                             <div class="dropdown-menu dropdown-menu-right">
                                 <!-- item-->
-                                
+                                <a class="dropdown-item" href="#"><i class="mdi mdi-face-profile font-size-16 align-middle mr-1"></i> Profile</a>
+                                <a class="dropdown-item" href="#"><i class="mdi mdi-credit-card-outline font-size-16 align-middle mr-1"></i> Billing</a>
+                                <a class="dropdown-item" href="#"><i class="mdi mdi-account-settings font-size-16 align-middle mr-1"></i> Settings</a>
+                                <a class="dropdown-item" href="#"><i class="mdi mdi-lock font-size-16 align-middle mr-1"></i> Lock screen</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="auth-login.php"><i class="mdi mdi-logout font-size-16 align-middle mr-1"></i> Logout</a>
                             </div>
@@ -335,7 +344,7 @@
                             <li>
                                 <a href="manage_balance.php" class="waves-effect">
                                     <i class="mdi mdi-bank-transfer"></i>
-                                    <span>Manage Balance</span>
+                                    
                                 </a>
                             </li>
 
