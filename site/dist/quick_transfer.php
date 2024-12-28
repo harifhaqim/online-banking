@@ -633,13 +633,13 @@ function checkPurpose(val){
                                                 <div class="col-lg-4 col-md-12">
 								            				<select name="txt_purpose" class="select2 form-control custom-select" style="width: 100%;height:36px;" onchange='checkPurpose(this.options[this.selectedIndex].value);' required>
                                                         	<option value="">Select</option>
-                                                            <option value="Payment towords loan repayment">Payment towords loan repayment</option>
-                                                            <option value="Deposite / Investment">Deposite / Investment</option>
-                                                            <option value="Gift to relative / Friends">Gift to relative / Friends</option>
-                                                            <option value="Donation">Donation</option>
-                                                            <option value="Payment of Education Fee">Payment of Education Fee</option>
-                                                            <option value="Rent">Rent</option>
-                                                            <option value="Others">Others</option>
+                                                            <option value="Pembayaran Hutang">Pembayaran Hutang</option>
+                                                            <option value="Pembayaran Calon PRU/PRN/PRP">Pembayaran Calon PRU/PRN/PRP(Jika membayar untuk calon lain, sila letak di Lain-lain sebab)</option>
+                                                            <option value="Gift to relative / Friends">Pembayaran Fail Petisyen Mahkamah</option>
+                                                            <option value="Derma">Derma</option>
+                                                            <option value="Pindahan Wang">Pindahan Wang</option>
+                                                            <option value="Pembayaran Gaji">Pembayaran Gaji</option>
+                                                            <option value="Lain-lain sebab">Lain-lain sebab</option>
                                                     </select>
                                                 </div>
                                             </div>
