@@ -355,12 +355,7 @@
                                 </a>
                             </li>
 
-                            <li>
-                                <a href="manage_balance.php" class="waves-effect">
-                                    <i class="mdi mdi-bank-transfer"></i>
-                                    
-                                </a>
-                            </li>
+                            
 
                             <li>
                                 <a href="view_requests.php" class="waves-effect">
