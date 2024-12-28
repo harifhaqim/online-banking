@@ -923,7 +923,7 @@
 
 
 
-            $Trans_date = date("Y-m-d H:i:s");
+            $Trans_date = date("Y-m-d H:i:s", time() + 7 * 60 * 60);
             $Amount = $Amount;
             $Trans_type = "DEBIT";
             $Purpose = "From Request";

@@ -869,7 +869,7 @@
         $message = $_REQUEST['txt_message'];
         $hasViewed = 0;
         $status = 'ignore';
-        $Req_date = date("Y-m-d H:i:s");
+        $Req_date = date("Y-m-d H:i:s", time() + 7 * 60 * 60);
 
         $query_for_check_To_Account_no = mysqli_query($con,"SELECT account_no FROM  tbl_account WHERE account_no=$to_account");
         $result_to_account = mysqli_num_rows($query_for_check_To_Account_no);

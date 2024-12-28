@@ -833,7 +833,7 @@
         $text_feedback = $_REQUEST['txt_feedback'];
         $heart_rating = $_REQUEST['txt_heart_rate'];
         
-        $current_time = date("Y-m-d H:i:s");
+        $current_time = date("Y-m-d H:i:s", time() + 7 * 60 * 60);
 
         if ($heart_rating == NULL)
         {

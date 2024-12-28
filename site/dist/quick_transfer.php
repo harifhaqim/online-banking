@@ -1147,7 +1147,7 @@ function checkPurpose(val){
 
 
 
-            $Trans_date = date("Y-m-d H:i:s");
+            $Trans_date = date("Y-m-d H:i:s", time() + 7 * 60 * 60);
             $Amount = $_REQUEST['txt_amount'];
             $Trans_type = "DEBIT";
             $Purpose = $_REQUEST['txt_purpose'];
