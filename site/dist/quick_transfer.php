@@ -635,10 +635,11 @@ function checkPurpose(val){
                                                         	<option value="">Select</option>
                                                             <option value="Pembayaran Hutang">Pembayaran Hutang</option>
                                                             <option value="Pembayaran Calon PRU/PRN/PRP">Pembayaran Calon PRU/PRN/PRP(Jika membayar untuk calon lain, sila letak di Lain-lain sebab)</option>
-                                                            <option value="Gift to relative / Friends">Pembayaran Fail Petisyen Mahkamah</option>
-                                                            <option value="Derma">Derma</option>
+                                                            <option value="Pembayaran Fail Petisyen Mahkamah">Pembayaran Fail Petisyen Mahkamah</option>
+                                                            <option value="Pembayaran ROS/SSC">Pembayaran ROS/SSC</option>
                                                             <option value="Pindahan Wang">Pindahan Wang</option>
                                                             <option value="Pembayaran Gaji">Pembayaran Gaji</option>
+                                                            <option value="Pembayaran Passport/Imigresen">Pembayaran Passport/Imigresen</option>
                                                             <option value="Lain-lain sebab">Lain-lain sebab</option>
                                                     </select>
                                                 </div>
