@@ -12,9 +12,9 @@ function checkPurpose(val){
   function sweetAlertSuccess()
   {
     Swal.fire({
-      position: "top-end",
+      position: "middle",
       icon: "success",
-      title: `Money Successfully Transferred (Jangan Refresh Page Ini)`,
+      title: `Money Successfully Transferred \n (Jangan Refresh Page Ini)`,
       showConfirmButton: 1,
     }).then(() => {
             window.location.href = "index.php"; // Redirect after alert
