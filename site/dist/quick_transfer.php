@@ -49,7 +49,7 @@ function checkPurpose(val){
     doc.text(`Trans ID Receiver : ${tsDetails.trans_id_to}`, 20, 120);
 
   // Generate and save the PDF before alert
-    doc.save(`bnc_tr_${tsDetails.trans_id_from}.pdf`);
+    
 
     Swal.fire({
       position: "middle",
@@ -57,6 +57,7 @@ function checkPurpose(val){
       title: `Money Successfully Transferred to \n ${tsDetails.to_account_name} \n Amount : DC ${tsDetails.amount} \n Purpose : ${tsDetails.purpose}  \n Trans ID : ${tsDetails.trans_id_from} \n GUNAKAN FAIL PDF UNTUK URUSAN RASMI \n SILA SCREENSHOT BUAT SEMENTARA WAKTU \n (Jangan Refresh Page Ini)`,
       showConfirmButton: 1,
     }).then(() => {
+            doc.save(`bnc_tr_${tsDetails.trans_id_from}.pdf`);
             window.location.href = "index.php"; // Redirect after alert
         }); 
     };
