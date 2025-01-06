@@ -169,7 +169,7 @@
                 
                 
                 
-                    $Trans_date = date("Y-m-d H:i:s", time() + 7 * 60 * 60);
+                    $Trans_date = date("Y-m-d H:i:s", time() + 8 * 60 * 60);
                     $Trans_type = "DEBIT";
                     $Purpose = "Operation made by Admin";
                     $To_account = $manage_account_no;
@@ -253,7 +253,7 @@
             
             
             
-                $Trans_date = date("Y-m-d H:i:s", time() + 7 * 60 * 60);
+                $Trans_date = date("Y-m-d H:i:s", time() + 8 * 60 * 60);
                 $Trans_type = "DEBIT";
                 $Purpose = "Operation made by Admin";
             
@@ -1327,7 +1327,7 @@ if(isset($_GET['operationType'])) {
             $stmt->bind_param("ii", $account_bal, $to_account);
             $stmt->execute();
 
-            $trans_date = date("Y-m-d H:i:s", time() + 7 * 60 * 60);
+            $trans_date = date("Y-m-d H:i:s", time() + 8 * 60 * 60);
             $trans_type = "DEBIT";
             $purpose = "Operation made by Admin";
 
@@ -1383,7 +1383,7 @@ if(isset($_GET['operationType'])) {
             $stmt->bind_param("ii", $account_bal, $to_account);
             $stmt->execute();
 
-            $trans_date = date("Y-m-d H:i:s", time() + 7 * 60 * 60);
+            $trans_date = date("Y-m-d H:i:s", time() + 8 * 60 * 60);
             $trans_type = "DEBIT";
             $purpose = "Operation made by Admin";
 

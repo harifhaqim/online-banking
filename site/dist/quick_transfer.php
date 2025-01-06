@@ -1,5 +1,5 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script type="text/javascript">
-
 function checkPurpose(val){
     var element=document.getElementById('txt_purpose_hide');
     if(val=='Select'||val=='Lain-lain sebab')
@@ -9,16 +9,57 @@ function checkPurpose(val){
 }
 
 
-  function sweetAlertSuccess()
+  function sweetAlertSuccess(tsDetails)
   {
+    const { jsPDF } = window.jspdf;
+    const pageWidth = 250;
+    const pageHeight = 130;
+    const doc = new jsPDF({
+        orientation: "landscape",
+        unit: "mm",
+        format: [pageWidth, pageHeight],
+    });
+    doc.setFontSize(12);
+    const img = new Image();
+    img.src = "assets/images/bnc-logo.jpg"; // Replace with the correct path to your image
+
+    img.onload = function () {
+        // Add the logo to the PDF (x: 10, y: 10, width: 50, height: 20)
+        
+        doc.setFillColor(0, 138, 255); // Pure blue color
+        doc.setTextColor(255, 255, 255);
+
+    // Draw a rectangle to cover the entire page
+        doc.rect(0, 0, doc.internal.pageSize.getWidth(), doc.internal.pageSize.getHeight(), 'F');
+        doc.addImage(img, "JPEG", 20, 2, 30, 30);
+    
+  
+  // Add content to PDF
+    
+    doc.text("BANK NEGARA CHESKA", 70, 20);
+    doc.text("TRANSACTION RECORD", 170, 20);
+    doc.text(`From Account : ${tsDetails.from_account}`, 20, 40);
+    doc.text(`From Account Name : ${tsDetails.from_account_name}`, 20, 50);
+    doc.text(`To Account : ${tsDetails.to_account}`, 20, 60);
+    doc.text(`To Account Name : ${tsDetails.to_account_name}`, 20, 70);
+    doc.text(`Amount : DC ${tsDetails.amount}`, 20, 80);
+    doc.text(`Purpose : ${tsDetails.purpose}`, 20, 90);
+    doc.text(`Date : ${tsDetails.time}`, 20, 100);
+    doc.text(`Trans ID Sender : ${tsDetails.trans_id_from}`, 20, 110);
+    doc.text(`Trans ID Receiver : ${tsDetails.trans_id_to}`, 20, 120);
+
+  // Generate and save the PDF before alert
+    doc.save(`bnc_tr_${tsDetails.trans_id_from}.pdf`);
+
     Swal.fire({
       position: "middle",
       icon: "success",
-      title: `Money Successfully Transferred \n (Jangan Refresh Page Ini)`,
+      title: `Money Successfully Transferred to \n ${tsDetails.to_account_name} \n Amount : DC ${tsDetails.amount} \n Purpose : ${tsDetails.purpose}  \n Trans ID : ${tsDetails.trans_id_from} \n GUNAKAN FAIL PDF UNTUK URUSAN RASMI \n (Jangan Refresh Page Ini)`,
       showConfirmButton: 1,
     }).then(() => {
             window.location.href = "index.php"; // Redirect after alert
         }); 
+    };
   }
 
   function wrongAccountNo()
@@ -1046,11 +1087,19 @@ function checkPurpose(val){
         $result = mysqli_query($con, $query_for_Account_bal) or die('SQL Error :: '.mysqli_error());
         $row = mysqli_fetch_assoc($result);
 
+        
+
         $Acount_bal = $row['balance'];
         $Amount = $_REQUEST['txt_amount'];
+        $Amount_chk = $Amount;
         $To_account = $_REQUEST['txt_ben_account_no'];
         $To_account2 = $_REQUEST['txt_ben_account_no_2'];
 
+        $query_for_account_name_from = "SELECT full_name FROM tbl_customer WHERE account_no=$Account_no";
+        $result = mysqli_query($con, $query_for_account_name_from) or die('SQL Error :: '.mysqli_error());
+        $row = mysqli_fetch_assoc($result);
+        $name_from = $row['full_name'];
+        $test = "Hi";
 
         // Check To_account no. is in database or not
         // $lectureName = mysql_real_escape_string($lectureName);  // SECURITY!
@@ -1116,6 +1165,11 @@ function checkPurpose(val){
 
             // 2. add amount in to_account customer
             $To_account = $_REQUEST['txt_ben_account_no'];
+            $query_name_to = "SELECT full_name FROM tbl_customer WHERE account_no=$To_account";
+            $result= mysqli_query($con, $query_name_to) or die('SQL Error :: '.mysqli_error());
+            $row= mysqli_fetch_assoc($result);
+            $name_to = $row['full_name'];
+            print($name_to);
             $query_for_Ben_Account_bal = "SELECT balance FROM tbl_balance WHERE account_no=$To_account";
             $result = mysqli_query($con, $query_for_Ben_Account_bal) or die('SQL Error :: '.mysqli_error());
             $row = mysqli_fetch_assoc($result);
@@ -1130,6 +1184,7 @@ function checkPurpose(val){
 
             $Trans_date = date("Y-m-d H:i:s", time() + 7 * 60 * 60);
             $Amount = $_REQUEST['txt_amount'];
+            $Amount_chk2 = $Amount;
             $Trans_type = "DEBIT";
             $Purpose = $_REQUEST['txt_purpose'];
             if($Purpose == "" || $Purpose == "Lain-lain sebab" ){
@@ -1168,12 +1223,37 @@ function checkPurpose(val){
             VALUES ('$Trans_date', $Amount, '$Trans_type', '$Purpose', $Account_no, $To_account,    $Acount_bal)";
             $result = mysqli_query($con, $query_credit_record) or die('SQL Error :: '.mysqli_error());
 
+            
 
             if ($result)
             {
-              echo '<script type="text/JavaScript">  
-              sweetAlertSuccess();
-             </script>' 
+                // pengirim trans_id
+                $query_for_trans_id_from = "SELECT trans_id FROM tbl_transaction WHERE account_no=$Account_no AND to_account=$To_account AND trans_type='DEBIT' AND trans_date='$Trans_date'";
+                $result = mysqli_query($con, $query_for_trans_id_from) or die('SQL Error :: '.mysqli_error());
+                $row = mysqli_fetch_assoc($result);
+                $trans_id_from = $row['trans_id'];
+
+                //penerima trans_id
+                $query_for_trans_id_to = "SELECT trans_id FROM tbl_transaction WHERE account_no=$To_account AND to_account=$Account_no AND trans_type='CREDIT' AND trans_date='$Trans_date'";
+                $result = mysqli_query($con, $query_for_trans_id_to) or die('SQL Error :: '.mysqli_error());
+                $row = mysqli_fetch_assoc($result);
+                $trans_id_to = $row['trans_id'];
+
+            echo "<script type='text/JavaScript'>  
+            const tsDetails = {
+                amount: '$Amount_chk',
+                purpose: '$Purpose',
+                to_account: '$To_account',
+                to_account_name: '$name_to',
+                from_account: '$Account_no',
+                from_account_name: '$name_from',
+                time: '$Trans_date',
+                trans_id_from: '$trans_id_from',
+                trans_id_to: '$trans_id_to'
+              };
+              sweetAlertSuccess(tsDetails);
+            
+             </script>"
               ;
             }
             else
