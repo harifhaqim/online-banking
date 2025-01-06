@@ -785,7 +785,7 @@
                                                             </td>
                                                             <td>'.$row["gender"].'<br></td>
                                                             <td> '.$account_type.'</td>
-                                                            <td>&#x0024; '.$account_bal.'<br></td>
+                                                            <td>DC '.$account_bal.'<br></td>
                                                             <td></td>
                                                             <td>
                                                             '.$AddReduceBtn.'

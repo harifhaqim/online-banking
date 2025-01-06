@@ -503,7 +503,7 @@
                                                             <a href="inbox_read.php?request_id='.$row['request_id'].'" class="title">'.$sender_name.'</a>
                                                         </div>
                                                         <div class="col-mail col-mail-2">
-                                                            <a href="inbox_read.php?request_id='.$row['request_id'].'" class="subject"><span class="'.$badge_color.' badge mr-2">&#x0024; '.$row['amount'].'</span>'.$row["message"].'
+                                                            <a href="inbox_read.php?request_id='.$row['request_id'].'" class="subject"><span class="'.$badge_color.' badge mr-2">DC '.$row['amount'].'</span>'.$row["message"].'
                                                             </a>
                                                             <div class="date">'.$date_format.'</div>
                                                         </div>

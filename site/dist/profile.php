@@ -475,19 +475,7 @@
 
 
                                             
-                                                <div class="col-md-4 mb-3">
-                                                  <label>Password</label>
-                                                    <input type="password" name="txt_password" id="pass2" class="form-control" value="<?php echo $acc_password?>" required
-                                                            placeholder="Password"/>
-                                                </div>
-                                                <div class="col-md-4 mb-3">
-                                                  <label>Confirm Password</label>
-
-                                                    <input type="password" name="txt_repassword" class="form-control" value="<?php echo $acc_password?>" required
-                                                            data-parsley-equalto="#pass2"
-                                                            placeholder="Re-Type Password"/>
-                                                </div>
-                                            
+                                                
                                                 
                                           
                                             </div>

@@ -14,10 +14,11 @@ function checkPurpose(val){
     Swal.fire({
       position: "top-end",
       icon: "success",
-      title: "Money Successfully Transferred",
-      showConfirmButton: !1,
-      timer: 1500
-    }); 
+      title: `Money Successfully Transferred (Jangan Refresh Page Ini)`,
+      showConfirmButton: 1,
+    }).then(() => {
+            window.location.href = "index.php"; // Redirect after alert
+        }); 
   }
 
   function wrongAccountNo()
@@ -28,14 +29,7 @@ function checkPurpose(val){
       icon: "error"
     });
   }
-  function mismatchAccountNo()
-  {
-    Swal.fire({
-      title: "Transaction Failed",
-      text: "Account Number Not Matched",
-      icon: "error"
-    });
-  }
+ 
   function lowBalance()
   {
     Swal.fire({
@@ -518,8 +512,8 @@ function checkPurpose(val){
                                                 </span>
                                             </div>
                                         </div>
-                                        <h4 class="m-0 align-self-center">&#x0024; <?php echo $credit_sum ?></h4>
-                                          <p class="mb-0 mt-3 text-muted"><span class="text-success">&#x0024; <?php echo $credit_sum_of_this_month ?> <i class="mdi mdi-trending-up mr-1"></i></span> From This Month</p>
+                                        <h4 class="m-0 align-self-center">DC <?php echo $credit_sum ?></h4>
+                                          <p class="mb-0 mt-3 text-muted"><span class="text-success">DC <?php echo $credit_sum_of_this_month ?> <i class="mdi mdi-trending-up mr-1"></i></span> From This Month</p>
                                     </div>
                                 </div>
                             </div>
@@ -537,8 +531,8 @@ function checkPurpose(val){
                                                 </span>
                                             </div>
                                         </div>
-                                        <h4 class="m-0 align-self-center">&#x0024; <?php echo $debit_sum ?></h4>
-                                        <p class="mb-0 mt-3 text-muted"><span class="text-danger">&#x0024; <?php echo $debit_sum_of_this_month ?> <i class="mdi mdi-trending-up mr-1"></i></span> From This Month</p>
+                                        <h4 class="m-0 align-self-center">DC <?php echo $debit_sum ?></h4>
+                                        <p class="mb-0 mt-3 text-muted"><span class="text-danger">DC <?php echo $debit_sum_of_this_month ?> <i class="mdi mdi-trending-up mr-1"></i></span> From This Month</p>
                                     </div>
                                 </div>
                             </div>
@@ -556,16 +550,16 @@ function checkPurpose(val){
                                                 </span>
                                             </div>
                                         </div>
-                                        <h4 class="m-0 align-self-center">&#x0024; <?php echo $account_bal ?></h4>
+                                        <h4 class="m-0 align-self-center">DC <?php echo $account_bal ?></h4>
                                         <?php 
                                             $result_of_this_month = $credit_sum_of_this_month - $debit_sum_of_this_month;
                                             if ($result_of_this_month < 0)
                                             {
-                                                $echo_result_of_this_month =  '<p class="mb-0 mt-3 text-muted"><span class="text-danger">&#x0024; '.$result_of_this_month.' <i class="mdi mdi-trending-up mr-1"></i></span> From This Month</p>';
+                                                $echo_result_of_this_month =  '<p class="mb-0 mt-3 text-muted"><span class="text-danger">DC '.$result_of_this_month.' <i class="mdi mdi-trending-up mr-1"></i></span> From This Month</p>';
                                             }
                                             else
                                             {
-                                                $echo_result_of_this_month =  '<p class="mb-0 mt-3 text-muted"><span class="text-success">&#x0024; '.$result_of_this_month.' <i class="mdi mdi-trending-up mr-1"></i></span> From This Month</p>';
+                                                $echo_result_of_this_month =  '<p class="mb-0 mt-3 text-muted"><span class="text-success">DC '.$result_of_this_month.' <i class="mdi mdi-trending-up mr-1"></i></span> From This Month</p>';
                                             }
 
                                             echo $echo_result_of_this_month;
@@ -588,27 +582,18 @@ function checkPurpose(val){
                                         <p class="card-title-desc"> </p>
         
                                         <form class="custom-validation">
-                                            <div class="form-group">
-                                                
-                                                <label>Beneficial Person Name</label>
-                                                <input type="text" class="form-control" required placeholder="Name of Beneficial"/>
-                                            </div>
+                                            
 
                                            
         
                                             <div class="form-group">
                                                 <label>Beneficial Account Number</label>
                                                 <div>
-                                                    <input type="password" name="txt_ben_account_no" id="pass2" class="form-control" required
+                                                    <input type="number" name="txt_ben_account_no" id="pass2" class="form-control" required
                                                             data-parsley-minlength="9"
                                                             placeholder="Account number"/>
                                                 </div>
-                                                <div class="mt-2">
-                                                    <input type="number" name="txt_ben_account_no_2" class="form-control" required
-                                                            data-parsley-minlength="9"
-                                                            data-parsley-equalto="#pass2"
-                                                            placeholder="Re-Type Account number"/>
-                                                </div>
+                                                
                                             </div>
 
                                              <div class="row mb-3 align-items-center">
@@ -619,7 +604,7 @@ function checkPurpose(val){
                                                     <div class="input-group">
                                                         <input type="text" name="txt_amount" class="form-control" placeholder="10,000" aria-label="Recipient 's username"           aria-describedby="basic-addon2" required>
                                                         <div class="input-group-append">
-                                                            <span class="input-group-text" id="basic-addon2">&#x0024;</span>
+                                                            <span class="input-group-text" id="basic-addon2">DC</span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -633,11 +618,12 @@ function checkPurpose(val){
                                                 <div class="col-lg-4 col-md-12">
 								            				<select name="txt_purpose" class="select2 form-control custom-select" style="width: 100%;height:36px;" onchange='checkPurpose(this.options[this.selectedIndex].value);' required>
                                                         	<option value="">Select</option>
+                                                            <option value="Pindahan Wang">Pindahan Wang</option>
                                                             <option value="Pembayaran Hutang">Pembayaran Hutang</option>
+                                                            <option value="Pembayaran Cukai">Pembayaran Cukai</option>
                                                             <option value="Pembayaran Calon PRU/PRN/PRP">Pembayaran Calon PRU/PRN/PRP(Jika membayar untuk calon lain, sila letak di Lain-lain sebab)</option>
                                                             <option value="Pembayaran Fail Petisyen Mahkamah">Pembayaran Fail Petisyen Mahkamah</option>
                                                             <option value="Pembayaran ROS/SSC">Pembayaran ROS/SSC</option>
-                                                            <option value="Pindahan Wang">Pindahan Wang</option>
                                                             <option value="Pembayaran Gaji">Pembayaran Gaji</option>
                                                             <option value="Pembayaran Passport/Imigresen">Pembayaran Passport/Imigresen</option>
                                                             <option value="Lain-lain sebab">Lain-lain sebab</option>
@@ -1108,13 +1094,7 @@ function checkPurpose(val){
               ;
         }
 
-        elseif ($To_account != $To_account2)
-        {
-            echo '<script type="text/JavaScript">  
-              mismatchAccountNo();
-             </script>' 
-              ;
-        }
+        
 
         elseif ($Amount < 1 || $Amount > 100000000000000)
         {

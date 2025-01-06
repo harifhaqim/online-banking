@@ -438,7 +438,7 @@
                                                 </span>
                                             </div>
                                         </div>
-                                        <h4 class="m-0 align-self-center">&#x0024; <?php echo $credit_sum ?></h4>
+                                        <h4 class="m-0 align-self-center">DC <?php echo $credit_sum ?></h4>
             
                                     </div>
                                 </div>
@@ -457,7 +457,7 @@
                                                 </span>
                                             </div>
                                         </div>
-                                        <h4 class="m-0 align-self-center">&#x0024; <?php echo $debit_sum ?></h4>
+                                        <h4 class="m-0 align-self-center">DC <?php echo $debit_sum ?></h4>
             
                                     </div>
                                 </div>
@@ -476,7 +476,7 @@
                                                 </span>
                                             </div>
                                         </div>
-                                        <h4 class="m-0 align-self-center">&#x0024; <?php echo $total_bank_balance ?></h4>
+                                        <h4 class="m-0 align-self-center">DC <?php echo $total_bank_balance ?></h4>
             
                                     </div>
                                 </div>
@@ -565,8 +565,8 @@
                                                             
                                                             <td>'.$trans_light.'
                                                             '.$row["trans_type"].'</td>
-                                                            <td>&#x0024; '.$row["amount"].'</td>
-                                                            <td>&#x0024; '.$row["account_bal"].'<br></td>
+                                                            <td>DC '.$row["amount"].'</td>
+                                                            <td>DC '.$row["account_bal"].'<br></td>
                                                     </tr>';
                                                    } 
                                                 ?>

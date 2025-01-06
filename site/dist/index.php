@@ -437,8 +437,8 @@
                                                 </span>
                                             </div>
                                         </div>
-                                        <h4 class="m-0 align-self-center">&#x0024; <?php echo $credit_sum ?></h4>
-                                          <p class="mb-0 mt-3 text-muted"><span class="text-success">&#x0024; <?php echo $credit_sum_of_this_month ?> <i class="mdi mdi-trending-up mr-1"></i></span> From This Month</p>
+                                        <h4 class="m-0 align-self-center">DC <?php echo $credit_sum ?></h4>
+                                          <p class="mb-0 mt-3 text-muted"><span class="text-success">DC <?php echo $credit_sum_of_this_month ?> <i class="mdi mdi-trending-up mr-1"></i></span> From This Month</p>
                                     </div>
                                 </div>
                             </div>
@@ -456,8 +456,8 @@
                                                 </span>
                                             </div>
                                         </div>
-                                        <h4 class="m-0 align-self-center">&#x0024; <?php echo $debit_sum ?></h4>
-                                        <p class="mb-0 mt-3 text-muted"><span class="text-danger">&#x0024; <?php echo $debit_sum_of_this_month ?> <i class="mdi mdi-trending-up mr-1"></i></span> From This Month</p>
+                                        <h4 class="m-0 align-self-center">DC <?php echo $debit_sum ?></h4>
+                                        <p class="mb-0 mt-3 text-muted"><span class="text-danger">DC <?php echo $debit_sum_of_this_month ?> <i class="mdi mdi-trending-up mr-1"></i></span> From This Month</p>
                                     </div>
                                 </div>
                             </div>
@@ -475,16 +475,16 @@
                                                 </span>
                                             </div>
                                         </div>
-                                        <h4 class="m-0 align-self-center">&#x0024; <?php echo $account_bal ?></h4>
+                                        <h4 class="m-0 align-self-center">DC <?php echo $account_bal ?></h4>
                                         <?php 
                                             $result_of_this_month = $credit_sum_of_this_month - $debit_sum_of_this_month;
                                             if ($result_of_this_month < 0)
                                             {
-                                                $echo_result_of_this_month =  '<p class="mb-0 mt-3 text-muted"><span class="text-danger">&#x0024; '.$result_of_this_month.' <i class="mdi mdi-trending-up mr-1"></i></span> From This Month</p>';
+                                                $echo_result_of_this_month =  '<p class="mb-0 mt-3 text-muted"><span class="text-danger">DC '.$result_of_this_month.' <i class="mdi mdi-trending-up mr-1"></i></span> From This Month</p>';
                                             }
                                             else
                                             {
-                                                $echo_result_of_this_month =  '<p class="mb-0 mt-3 text-muted"><span class="text-success">&#x0024; '.$result_of_this_month.' <i class="mdi mdi-trending-up mr-1"></i></span> From This Month</p>';
+                                                $echo_result_of_this_month =  '<p class="mb-0 mt-3 text-muted"><span class="text-success">DC '.$result_of_this_month.' <i class="mdi mdi-trending-up mr-1"></i></span> From This Month</p>';
                                             }
 
                                             echo $echo_result_of_this_month;
@@ -599,8 +599,8 @@
                                                             
                                                             <td>'.$trans_light.'
                                                             '.$row["trans_type"].'</td>
-                                                            <td>&#x0024; '.$row["amount"].'</td>
-                                                            <td>&#x0024; '.$row["account_bal"].'<br></td>
+                                                            <td>DC '.$row["amount"].'</td>
+                                                            <td>DC '.$row["account_bal"].'<br></td>
                                                     </tr>';
                                                    } 
                                                 ?>

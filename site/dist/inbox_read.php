@@ -505,7 +505,7 @@
                                                         $amount = $row_request["amount"];
                                                         $send_button = 
                                                         '<form method="post"> 
-                                                        <input type="submit" class="btn btn-primary waves-effect waves-light mt-2 mr-3" name="btn_send_money" value="Send &#x0024; '.$amount.'"/>
+                                                        <input type="submit" class="btn btn-primary waves-effect waves-light mt-2 mr-3" name="btn_send_money" value="Send DC '.$amount.'"/>
                                                     </form>';
                                                     }
                                                     else

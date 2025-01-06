@@ -704,7 +704,7 @@
                                                             
                                                             <td>'.$row["mobile"].'</td>
                                                             <td> '.$row["email"].'</td>
-                                                            <td>&#x0024; '.$account_bal.'<br></td>
+                                                            <td>DC '.$account_bal.'<br></td>
                                                             <td> '.$account_type.'</td>
 
                                                     </tr>';
