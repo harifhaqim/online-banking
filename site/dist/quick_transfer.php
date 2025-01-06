@@ -54,7 +54,7 @@ function checkPurpose(val){
     Swal.fire({
       position: "middle",
       icon: "success",
-      title: `Money Successfully Transferred to \n ${tsDetails.to_account_name} \n Amount : DC ${tsDetails.amount} \n Purpose : ${tsDetails.purpose}  \n Trans ID : ${tsDetails.trans_id_from} \n GUNAKAN FAIL PDF UNTUK URUSAN RASMI \n (Jangan Refresh Page Ini)`,
+      title: `Money Successfully Transferred to \n ${tsDetails.to_account_name} \n Amount : DC ${tsDetails.amount} \n Purpose : ${tsDetails.purpose}  \n Trans ID : ${tsDetails.trans_id_from} \n GUNAKAN FAIL PDF UNTUK URUSAN RASMI \n SILA SCREENSHOT BUAT SEMENTARA WAKTU \n (Jangan Refresh Page Ini)`,
       showConfirmButton: 1,
     }).then(() => {
             window.location.href = "index.php"; // Redirect after alert
