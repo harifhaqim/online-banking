@@ -53,18 +53,41 @@ function checkPurpose(val){
     
 
     Swal.fire({
-      position: "middle",
-      icon: "success",
-      title: `Money Successfully Transferred to \n ${tsDetails.to_account_name} \n Amount : DC ${tsDetails.amount} \n Purpose : ${tsDetails.purpose}  \n Trans ID : ${tsDetails.trans_id_from} \n GUNAKAN FAIL PDF UNTUK URUSAN RASMI \n SILA SCREENSHOT BUAT SEMENTARA WAKTU \n (Jangan Refresh Page Ini)`,
-      showConfirmButton: 1,
-    }).then(() => {
-            const pdfDataUrl = doc.output('datauristring');
-            const downloadLink = document.createElement('a');
-            downloadLink.href = pdfDataUrl;
-            downloadLink.download = `bnc_tr_${tsDetails.trans_id_from}.pdf`
-            downloadLink.click();
-            window.location.href = "index.php"; // Redirect after alert
-        }); 
+        position: "middle",
+        icon: "success",
+        title: `Money Successfully Transferred!`,
+        html: `
+            <p>
+                Successfully transferred to ${tsDetails.to_account_name} <br>
+                Amount: DC ${tsDetails.amount} <br>
+                Purpose: ${tsDetails.purpose} <br>
+                Trans ID: ${tsDetails.trans_id_from} <br>
+                <strong>GUNAKAN FAIL PDF UNTUK URUSAN RASMI</strong> <br>
+                (SILA SCREENSHOT BUAT SEMENTARA WAKTU)
+            </p>
+            <button id="download-pdf" class="swal2-confirm swal2-styled" style="margin-top: 10px;">
+                Download PDF
+            </button>
+        `,
+        
+        showConfirmButton: false,
+        onOpen: (modalElement) => {
+            const downloadButton = modalElement.querySelector("#download-pdf");
+            if (downloadButton) {
+                downloadButton.addEventListener("click", () => {
+                    // Trigger PDF download
+                    doc.save(`bnc_tr_${tsDetails.trans_id_from}.pdf`);
+
+                    // Delay redirection after download
+                    setTimeout(() => {
+                        window.location.href = "index.php";
+                    }, 10000);
+                });
+            } else {
+                console.error("Download button not found in SweetAlert!");
+            }
+        },
+    });
     };
   }
 
