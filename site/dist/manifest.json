@@ -1,0 +1,13 @@
+{
+    "name": "SISTEM BANK NEGARA CHESKA",
+    "short_name": "BNC",
+    "start_url": "https://bank.harifhaqim.my/online-banking/site/dist/",
+    "display": "standalone",
+    "icons": [
+        {
+            "src": "/assets/images/bnc-logo.jpg",
+            "sizes": "192x192",
+            "type": "image/jpeg"
+        }
+    ]
+}
