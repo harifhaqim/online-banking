@@ -37,6 +37,7 @@ function checkPurpose(val){
   // Add content to PDF
     
     doc.text("BANK NEGARA CHESKA", 70, 20);
+    doc.text("AUTHORIZED", 190, 10);
     doc.text("TRANSACTION RECORD", 170, 20);
     doc.text(`From Account : ${tsDetails.from_account}`, 20, 40);
     doc.text(`From Account Name : ${tsDetails.from_account_name}`, 20, 50);
@@ -57,7 +58,11 @@ function checkPurpose(val){
       title: `Money Successfully Transferred to \n ${tsDetails.to_account_name} \n Amount : DC ${tsDetails.amount} \n Purpose : ${tsDetails.purpose}  \n Trans ID : ${tsDetails.trans_id_from} \n GUNAKAN FAIL PDF UNTUK URUSAN RASMI \n SILA SCREENSHOT BUAT SEMENTARA WAKTU \n (Jangan Refresh Page Ini)`,
       showConfirmButton: 1,
     }).then(() => {
-            doc.save(`bnc_tr_${tsDetails.trans_id_from}.pdf`);
+            const pdfDataUrl = doc.output('datauristring');
+            const downloadLink = document.createElement('a');
+            downloadLink.href = pdfDataUrl;
+            downloadLink.download = `bnc_tr_${tsDetails.trans_id_from}.pdf`
+            downloadLink.click();
             window.location.href = "index.php"; // Redirect after alert
         }); 
     };
